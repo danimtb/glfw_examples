@@ -1,10 +1,7 @@
 project(glfw-examples)
 cmake_minimum_required(VERSION 2.8.12)
 
-link_libraries(glfw3)
-
 include_directories(${glfw_INCLUDE_DIRS} "${CMAKE_SOURCE_DIR}/deps")
-
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
@@ -44,7 +41,13 @@ add_executable(simple WIN32 MACOSX_BUNDLE simple.c ${ICON} ${GLAD})
 add_executable(splitview WIN32 MACOSX_BUNDLE splitview.c ${ICON} ${GLAD})
 add_executable(wave WIN32 MACOSX_BUNDLE wave.c ${ICON} ${GLAD})
 
-target_link_libraries(particles "${CMAKE_THREAD_LIBS_INIT}" "${CONAN_LIBS}")
+target_link_libraries(boing ${CONAN_LIBS})
+target_link_libraries(gears ${CONAN_LIBS})
+target_link_libraries(heightmap ${CONAN_LIBS})
+target_link_libraries(simple ${CONAN_LIBS})
+target_link_libraries(splitview ${CONAN_LIBS})
+target_link_libraries(wave ${CONAN_LIBS})
+target_link_libraries(particles ${CMAKE_THREAD_LIBS_INIT} ${CONAN_LIBS})
 if (RT_LIBRARY)
     target_link_libraries(particles "${RT_LIBRARY}")
 endif()
